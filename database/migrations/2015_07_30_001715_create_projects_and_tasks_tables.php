@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateProjectsAndTasksTables extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('projects', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name')->default('');
+            $table->string('slug')->default('');
+            $table->timestamps();
+        });
+        Schema::create('tasks', function(Blueprint $table){
+            $table->increments('id');
+            $table->integer('projects_id')->unsigned()->default(0);
+            $table->foreing('projects_id')->references('id')->on('projects_id')->onDelete('cascade');
+            $table->string('name')->default('');
+            $table->string('slug')->default('');
+            $table->boolean('description')->default('');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('tasks');
+        Schema::drop('projects');
+    }
+}
