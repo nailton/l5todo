@@ -3,8 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProjectsAndTasksTables extends Migration
-{
+class CreateProjectsAndTasksTables extends Migration {
+
     /**
      * Run the migrations.
      *
@@ -12,19 +12,22 @@ class CreateProjectsAndTasksTables extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('projects', function(Blueprint $table)
+        {
             $table->increments('id');
             $table->string('name')->default('');
             $table->string('slug')->default('');
             $table->timestamps();
         });
-        Schema::create('tasks', function(Blueprint $table){
+
+        Schema::create('tasks', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('projects_id')->unsigned()->default(0);
-            $table->foreing('projects_id')->references('id')->on('projects_id')->onDelete('cascade');
+            $table->integer('project_id')->unsigned()->default(0);
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
             $table->string('name')->default('');
             $table->string('slug')->default('');
-            $table->boolean('description')->default('');
+            $table->boolean('completed')->default(false);
+            $table->text('description')->default(null);
             $table->timestamps();
         });
     }
@@ -39,4 +42,5 @@ class CreateProjectsAndTasksTables extends Migration
         Schema::drop('tasks');
         Schema::drop('projects');
     }
+
 }
