@@ -11,18 +11,21 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 Route::get('/', 'WelcomeController@index');
 
-Route::resource('projects', 'ProjectsController');
-// Route::resource('tasks', 'TasksController');
-Route::resource('projects.tasks', 'TasksController');
+Route::model('tasks', 'Task');
+Route::model('projects', 'Project');
 
 Route::bind('tasks', function($value, $route){
+
   return App\Task::whereSlug($value)->first();
+
 });
 Route::bind('projects', function($value, $route){
+
   return App\Project::whereSlug($value)->first();
+
 });
+
+Route::resource('projects', 'ProjectsController');
+Route::resource('projects.tasks', 'TasksController');

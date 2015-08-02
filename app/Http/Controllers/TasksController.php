@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Project;
+use App\Task;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -14,9 +16,10 @@ class TasksController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Project $project)
     {
         //
+        return view('tasks.index', compact('project'));
     }
 
     /**
@@ -24,18 +27,19 @@ class TasksController extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(Project $project)
     {
         //
+        return view('tasks.create', compact('project'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request  $request
+     * @param  Project $project
      * @return Response
      */
-    public function store(Request $request)
+    public function store(Project $project)
     {
         //
     }
@@ -43,33 +47,37 @@ class TasksController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Project  $project
+     * @param  Task  $task
      * @return Response
      */
-    public function show($id)
+    public function show(Project $project, Task $task)
     {
         //
+        return view('tasks.show', compact('project', 'task'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Project $project
+     * @param  Task $task
      * @return Response
      */
-    public function edit($id)
+    public function edit(Project $project, Task $task)
     {
         //
+        return view('task.show', compact('project', 'task'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  Request  $request
-     * @param  int  $id
+     * @param  Project $project
+     * @param  Task $task
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Project $project, Task $task)
     {
         //
     }
@@ -80,7 +88,7 @@ class TasksController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Project $project, Task $task)
     {
         //
     }
