@@ -8,4 +8,4 @@ Homestead.json
 .env
 *.sublime-workspace
 *.sublime-project
-
+_ide_helper.php
