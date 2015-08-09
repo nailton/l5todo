@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
+
+    protected $rules = [
+            'name' => ['required', 'min:3'],
+            'slug' => ['required']
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -38,13 +44,18 @@ class ProjectsController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
+     * @param Illuminate\Http\Request $request
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
+
+        // validação. Existe outra formas de validar, porém como o projeto e pequeno, no momento aqui está bom.
+        $this->validate($request, $this->rules);
+
         $input = Input::all();
         Project::create($input);
+
         return Redirect::route('projects.index')->with('message', 'Project created');
     }
 
@@ -75,14 +86,17 @@ class ProjectsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  Project  $project
-     * @param  int  $id
+     * @param  \App\Project  $project
+     * @param  \Illuminate\Http\Request $request
      * @return Response
      */
-    public function update(Project $project)
+    public function update(Project $project, Request $request)
     {
+        $this->validate($request, $this->rules);
+
         $input = array_except(Input::all(), '_method');
         $project->update($input);
+
         return Redirect::route('projects.show', $project->slug)->with('message',  'Project updated');
     }
 
