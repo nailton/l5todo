@@ -1,0 +1,20 @@
+{
+  "name": "l5todo",
+  "version": "0.0.0",
+  "homepage": "https://github.com/nailton/l5todo",
+  "authors": [
+    "Nailton Sousa <nailton@fordev.com.br>"
+  ],
+  "description": "todo list with Laravel 5",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass-official": "~3.3.5"
+  }
+}

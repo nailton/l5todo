@@ -2,7 +2,8 @@
 
 <html>
 <head>
-  <title>App Name - @yield('title')</title>
+  <title>L5 Todo - @yield('title')</title>
+  <link rel="stylesheet" type="text/css" href="{{ elixir('css/app.css') }}">
 </head>
 <body>
 
@@ -29,6 +30,6 @@
     @yield('content')
 
   </div>
-
+<script src="{{ elixir('js/app.js') }}"></script>
 </body>
 </html>
