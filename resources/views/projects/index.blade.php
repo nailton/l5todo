@@ -1,5 +1,5 @@
-<!-- /resources/views/projects/index.blade.php -->
-@extends('layouts.app')
+{{-- /resources/views/projects/index.blade.php --}}
+@extends('layouts.painel.master')
 
 @section('title', 'Lista de projetos')
 

@@ -1,0 +1,1 @@
+{{-- /resources/views/layouts/painel/partials/side-tools.blade.php --}}

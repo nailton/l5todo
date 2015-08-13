@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'ProjectsController@index');
 
 Route::model('tasks', 'Task');
 Route::model('projects', 'Project');
