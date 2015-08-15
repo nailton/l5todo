@@ -1,4 +1,7 @@
+// var gulp = require("gulp");
 var elixir = require('laravel-elixir');
+// var del = require('del');
+var paths = { 'jquery': './vendor/bower_components/jquery/' }
 
 /*
  |--------------------------------------------------------------------------
@@ -11,20 +14,25 @@ var elixir = require('laravel-elixir');
  |
  */
 
-var paths = {
-    'jquery': './vendor/bower_components/jquery/',
-    'bootstrap': './vendor/bower_components/bootstrap-sass-official/assets/'
-}
+// elixir.extend("remove", function(path) {
+//     gulp.task("remove", function() {
+//         del(path);
+//     });
+//     return this.queueTask("remove");
+// });
 
 elixir(function(mix) {
-    mix.sass("app.scss", 'public/css/', {
-            includePaths: [paths.bootstrap + 'stylesheets/']
-        })
-        .copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts')
-        .scripts([
-            paths.jquery + "dist/jquery.js",
-            paths.bootstrap + "javascripts/bootstrap.js"
-        ], 'public/js/app.js', './')
-        .style("custom.css", null, 'resources/assets/painel/css/')
-         .version(['public/css/', 'public/js/app.js'])
+    mix.styles([
+        "custom.css"
+    ], null, "resources/assets/painel/css/")
+
+    .scripts([
+        paths.jquery + "dist/jquery.js"], 'public/js/app.js', './'
+    )
+
+    .copy("resources/assets/images/", "public/images/")
+
+    .version(["css/all.css", "js/app.js"])
+
+    // .remove([ 'public/css', 'public/js' ])
 });
