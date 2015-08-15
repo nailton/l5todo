@@ -1,7 +1,9 @@
 // var gulp = require("gulp");
 var elixir = require('laravel-elixir');
 // var del = require('del');
-var paths = { 'jquery': './vendor/bower_components/jquery/' }
+var paths = {
+    'jquery': './vendor/bower_components/jquery/'
+}
 
 /*
  |--------------------------------------------------------------------------
@@ -24,15 +26,15 @@ var paths = { 'jquery': './vendor/bower_components/jquery/' }
 elixir(function(mix) {
     mix.styles([
         "custom.css"
-    ], null, "resources/assets/painel/css/")
+    ], null, "resources/assets/painel/css")
 
-    .scripts([
-        paths.jquery + "dist/jquery.js"], 'public/js/app.js', './'
-    )
+    .scripts([paths.jquery + "dist/jquery.js"], 'public/js/app.js', './')
+        .scripts("custom.js", null, "resources/assets/painel/js")
+        .scriptsIn("public/js/")
 
-    .copy("resources/assets/images/", "public/images/")
+    .copy("resources/assets/images", "public/images")
 
-    .version(["css/all.css", "js/app.js"])
+    .version(["css/all.css", "js/all.js"])
 
     // .remove([ 'public/css', 'public/js' ])
 });
