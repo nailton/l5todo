@@ -12,23 +12,7 @@
     @include('layouts.painel.partials.top-navbar')
     <div class="container">
         @include('layouts.painel.partials.breadcrumbs')
-
-
-        @if (Session::has('message'))
-        <div class="alert alert-dismissible alert-info">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>Heads up!</strong> {{ Session::get('message') }}
-        </div>
-        @endif
-
-        @if($errors->any())
-        <div class="alert alert-dismissible alert-danger">
-            @foreach($errors->all() as $error)
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>Atenção!</strong> {{ $error }}
-            @endforeach
-        </div>
-        @endif
+        @include('layouts.painel.partials.flash')
 
         <!-- conteudo interno -->
         <div class="container-fluid">

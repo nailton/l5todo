@@ -18,7 +18,7 @@ class PainelController extends Controller
     public function index(Project $project)
     {
         $projects = Project::all();
-        return view('layouts.painel.home', compact('projects'));
+        return view('layouts.painel.index', compact('projects'));
     }
 
     /**

@@ -1,4 +1,4 @@
-{{-- /resources/views/projects/index.blade.php --}}
+{{-- /resources/views/layouts/painel/index.blade.php --}}
 @extends('layouts.painel.master')
 @section('title', 'Home')
 @section('content')
