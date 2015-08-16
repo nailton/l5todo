@@ -3,60 +3,44 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @section('head-title')
     <title>L5 Todo - @yield('title')</title>
-    @stop
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ elixir("css/all.css") }}">
 </head>
+<body>
+    @include('layouts.painel.partials.top-navbar')
+    <div class="container">
+        @include('layouts.painel.partials.breadcrumbs')
 
-<body class="nav-md">
-    <div class="container body">
 
-        <div class="main_container">
-
-            @if (Session::has('message'))
-
-            <div class="flash alert-info">
-
-                <p>{{ Session::get('message') }}</p>
-
-            </div>
-
-            @endif
-
-            @include('layouts.painel.partials.body-sidebar')
-            @include('layouts.painel.partials.body-top-navigation')
-
-            <div class="right_col" role="main">
-
-                @if($errors->any())
-
-                <div class="flash alert-danger">
-
-                    @foreach($errors->all() as $error)
-
-                    <p>{{ $error }}</p>
-
-                    @endforeach
-
-                </div>
-
-                @endif
-
-                @yield('content')
-                @include('layouts.painel.partials.body-footer')
-
-            </div>
-
+        @if (Session::has('message'))
+        <div class="alert alert-dismissible alert-info">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Heads up!</strong> {{ Session::get('message') }}
         </div>
+        @endif
 
+        @if($errors->any())
+        <div class="alert alert-dismissible alert-danger">
+            @foreach($errors->all() as $error)
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Atenção!</strong> {{ $error }}
+            @endforeach
+        </div>
+        @endif
+
+        <!-- conteudo interno -->
+        <div class="container-fluid">
+            <div class="row">
+                @yield('content')
+                <!-- row -->
+            </div>
+            <!-- / conteudo interno -->
+        </div>
+        <!-- /container -->
     </div>
 
-    @include('layouts.painel.partials.notifications')
     @include('layouts.painel.partials.footer')
 
 </body>

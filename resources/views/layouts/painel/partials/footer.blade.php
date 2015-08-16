@@ -1,4 +1,12 @@
-{{-- /resources/views/layouts/painel/partials/footer.blade.php --}}
-<script src="{{ elixir("js/all.js") }}"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
+<footer class="footer">
+  <div class="container">
+    <ul class="fd-footer-links">
+      <li>O atual timestamp UNIX é: {{ date('F d, Y - H:i:s', time()) }}.</li>
+      <li>|</li>
+      <li><a href="about">Sobre</a></li>
+      <li>|</li>
+      <li><a href="http://fordev.com.br" target="_blank">Fordev</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="{{ elixir("js/app.js") }}"></script>

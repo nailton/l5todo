@@ -10,8 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', 'ProjectsController@index');
+Route::get('/', 'PainelController@index');
+Route::get('painel', 'PainelController@index');
 
 Route::model('tasks', 'Task');
 Route::model('projects', 'Project');
@@ -29,3 +29,4 @@ Route::bind('projects', function($value, $route){
 
 Route::resource('projects', 'ProjectsController');
 Route::resource('projects.tasks', 'TasksController');
+
