@@ -54,10 +54,17 @@ class TasksController extends Controller
         $this->validate($request, $this->rules);
 
         $input = Input::all();
-        $input['project_id'] = $project->id;
         Task::create($input);
 
+        if (isset($project->id)) {
+
+        $input['project_id'] = $project->id;
         return Redirect::route('projects.show', $project->slug)->with('message', 'Tarefa criada!');
+        }
+
+        return redirect('painel')->with('message', 'Tarefa criada!');
+
+
     }
 
     /**

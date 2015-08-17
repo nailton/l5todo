@@ -15,10 +15,10 @@ class PainelController extends Controller
      *
      * @return Response
      */
-    public function index(Project $project)
+    public function index()
     {
-        $projects = Project::all();
-        return view('layouts.painel.index', compact('projects'));
+        $projetos_list = Project::lists('name', 'id');
+        return view('layouts.painel.index', compact('projetos_list'));
     }
 
     /**
