@@ -22,7 +22,7 @@
 </div>
 
 <div class="form-group">
-  {!! Form::label('slug', 'Slug:', array('class'=>'col-lg-2 control-label')) !!}
+  {!!Form::label('slug', 'Slug:', array('class'=>'col-lg-2 control-label')) !!}
   <div class="col-lg-10">
     {!! Form::text('slug', '', array('class'=>'form-control','placeholder'=> 'slug-da-tarefa')) !!}
     <div class="checkbox">
