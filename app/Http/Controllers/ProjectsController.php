@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use DB;
 use Input;
 use Redirect;
 use App\Project;
@@ -27,8 +27,8 @@ class ProjectsController extends Controller
     public function index()
     {
         //
-        $projects = Project::all();
-        return view('projects.index', compact('projects'));
+        $projects = DB::table('projects')->paginate(10);
+        return view('projects.index', ['projects' => $projects]);
     }
 
     /**
