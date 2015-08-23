@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+
 Route::get('/', 'PainelController@index');
 Route::get('painel', 'PainelController@index');
 
@@ -18,12 +19,12 @@ Route::model('projects', 'Project');
 
 Route::bind('tasks', function($value, $route){
 
-  return App\Task::whereSlug($value)->first();
+  return App\Task::whereId($value)->first();
 
 });
 Route::bind('projects', function($value, $route){
 
-  return App\Project::whereSlug($value)->first();
+  return App\Project::whereId($value)->first();
 
 });
 

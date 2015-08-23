@@ -1,4 +1,4 @@
-<!-- /resources/views/projects/edit.blade.php -->
+{{-- /resources/views/projects/edit.blade.php --}}
 @extends('layouts.app')
 
 @section('title', 'Editar projeto')

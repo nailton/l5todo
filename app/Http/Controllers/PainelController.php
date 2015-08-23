@@ -17,8 +17,8 @@ class PainelController extends Controller
      */
     public function index()
     {
-        $projetos_list = Project::lists('name', 'id');
-        return view('layouts.painel.index', compact('projetos_list'));
+        $project = Project::lists('name', 'id');
+        return view('layouts.painel.index', compact('project'));
     }
 
     /**
