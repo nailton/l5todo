@@ -13,6 +13,8 @@
 
 Route::get('/', 'PainelController@index');
 Route::get('painel', 'PainelController@index');
+Route::get('tasks/create', 'TasksController@create');
+Route::get('tasks', 'TasksController@index');
 
 Route::model('tasks', 'Task');
 Route::model('projects', 'Project');

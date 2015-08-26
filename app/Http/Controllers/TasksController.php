@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use DB;
 use Input;
 use Redirect;
 use App\Project;
@@ -27,8 +27,14 @@ class TasksController extends Controller
      */
     public function index(Project $project)
     {
-        //
-        return view('tasks.index', compact('project'));
+        $tasks = Task::with('project')->paginate(10);
+        // $tasks = DB::table('projects')->task;
+        // $project = Project::find(1);
+        // return $project->tasks;
+        // return $project->task->name;
+        // return $tasks[0]->name;
+        // dd($tasks);
+        return view('tasks.index', ['tasks' => $tasks]);
     }
 
     /**
@@ -38,7 +44,7 @@ class TasksController extends Controller
      */
     public function create(Project $project)
     {
-        //
+        $project = Project::lists('name', 'id');
         return view('tasks.create', compact('project'));
     }
 
@@ -108,7 +114,7 @@ class TasksController extends Controller
         $input = array_except(Input::all(), '_method');
         $task->update($input);
 
-        return Redirect::route('projects.tasks.show', [$project->slug, $task->slug])->with('message',  'Tarefa atualizada!');
+        return Redirect::route('projects.tasks.show', [$project->id, $task->id])->with('message',  'Tarefa atualizada!');
     }
 
     /**
@@ -120,7 +126,7 @@ class TasksController extends Controller
     public function destroy(Project $project, Task $task)
     {
         $task->delete();
-
-        return Redirect::route('projects.show', $project->slug)->with('message', 'Tarefa deletada!');
+        return Redirect::route('projects.tasks.index',
+            array($project->id,$task->id))->with('message', 'Tarefa deletada!');
     }
 }

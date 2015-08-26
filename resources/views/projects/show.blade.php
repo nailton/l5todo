@@ -13,7 +13,7 @@
   {!! link_to_route('projects.index', 'Voltar aos projetos', null, ['class' => 'btn']) !!}
 </div>
 
-<hr>
+
 @if (!$project->tasks->count())
 <p>Esse projeto ainda não tem tarefas</p>
 @else

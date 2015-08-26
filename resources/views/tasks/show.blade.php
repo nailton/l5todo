@@ -1,3 +1,4 @@
+{{-- /resources/views/tasks/show.blade.php --}}
 @extends('layouts.painel.master')
 
 @section('content')
