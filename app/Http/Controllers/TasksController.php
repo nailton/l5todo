@@ -15,6 +15,11 @@ use Illuminate\Http\Request;
 class TasksController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     protected $rules = [
             'name' => ['required', 'min:3'],
             'slug' => ['required'],

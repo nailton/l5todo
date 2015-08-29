@@ -14,6 +14,11 @@ use Illuminate\Http\Request;
 class ProjectsController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     protected $rules = [
             'name' => ['required', 'min:3'],
             'slug' => ['required']
