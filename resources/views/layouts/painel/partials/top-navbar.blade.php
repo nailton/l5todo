@@ -40,7 +40,7 @@
           </form>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/profile">Perfil <span class="sr-only">(current)</span></a></li>
-            <li><a href="/logout">Sair</a></li>
+            <li><a href="/auth/logout">Sair</a></li>
           </ul>
         </div>
       </div>

@@ -9,16 +9,16 @@
     <h1>Registar uma conta</h1>
     <form method="POST" action="/auth/register">
 
-    {!! csrf_field() !!}
+      {!! csrf_field() !!}
 
       <div class="form-group">
         <label>Nome:</label>
-        <input type="text" name="name" id="input" class="form-control" value="" required="required" title="">
+        <input type="text" name="name" id="input" class="form-control" value="{{ old('name') }}" required="required" title="">
       </div>
 
       <div class="form-group">
         <label>Email:</label>
-        <input type="text" name="email" id="inputEmail" class="form-control" value="" required="required" title="">
+        <input type="text" name="email" id="inputEmail" class="form-control" value="{{ old('email') }}" required="required" title="">
       </div>
 
       <div class="form-group">
@@ -27,14 +27,15 @@
       </div>
 
       <div class="form-group">
-        <label for="confirm_password">Confirme a Senha:</label>
-        <input type="password" name="confirm_password" id="confirm_password" class="form-control" required="required" title="">
+        <label for="password_confirmation">Confirme a Senha:</label>
+        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required="required" title="">
       </div>
 
-<button type="submit" class="btn btn-primary">Registar</button>
+      <button type="submit" class="btn btn-primary">Registar</button>
 
     </form>
-
+    <br>
+    @include('errors')
   </div>
 </div>
 @stop
