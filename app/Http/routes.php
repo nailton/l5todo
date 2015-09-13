@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'PainelController@index');
+Route::get('profile', 'Auth\AuthController@show');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -42,4 +43,4 @@ Route::bind('projects', function($value, $route){
 
 Route::resource('projects', 'ProjectsController');
 Route::resource('projects.tasks', 'TasksController');
-
+Route::resource('auth/profile', 'Auth\AuthController');

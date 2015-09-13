@@ -66,4 +66,9 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    public function profile(User $user)
+    {
+        return view('auth.profile');
+    }
 }
