@@ -12,7 +12,6 @@
 */
 
 Route::get('/', 'PainelController@index');
-Route::get('profile', 'Auth\AuthController@show');
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -26,6 +25,8 @@ Route::post('auth/register', 'Auth\AuthController@postRegister');
 Route::get('painel', 'PainelController@index');
 Route::get('tasks/create', 'TasksController@create');
 Route::get('tasks', 'TasksController@index');
+
+Route::get('profile/edit/{id}', 'ProfileController@edit');
 
 Route::model('tasks', 'Task');
 Route::model('projects', 'Project');
@@ -43,4 +44,4 @@ Route::bind('projects', function($value, $route){
 
 Route::resource('projects', 'ProjectsController');
 Route::resource('projects.tasks', 'TasksController');
-Route::resource('auth/profile', 'Auth\AuthController');
+Route::resource('profile', 'ProfileController');

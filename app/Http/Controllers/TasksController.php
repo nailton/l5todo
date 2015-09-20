@@ -33,12 +33,6 @@ class TasksController extends Controller
     public function index(Project $project)
     {
         $tasks = Task::with('project')->paginate(10);
-        // $tasks = DB::table('projects')->task;
-        // $project = Project::find(1);
-        // return $project->tasks;
-        // return $project->task->name;
-        // return $tasks[0]->name;
-        // dd($tasks);
         return view('tasks.index', ['tasks' => $tasks]);
     }
 
