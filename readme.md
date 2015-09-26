@@ -1,4 +1,9 @@
 # l5todo
 Meu primeiro app com laravel 5, para estudo e conhecimento do Framework.
 
-Baseado no artigo: https://www.flynsarmy.com/2015/02/creating-a-basic-todo-application-in-laravel-5-part-1/
+Referências usadas:
+
+ - [Creating a Basic ToDo Application in Laravel 5](https://www.flynsarmy.com/?s=Laravel) 
+ - [Framework Laravel](http://laravel.com/docs/5.1) 
+ - [Videos Laracasts](https://laracasts.com)
+ - [Theme](https://bootswatch.com/paper/)

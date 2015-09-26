@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use DB;
 use Input;
 use Redirect;
 use App\Project;
@@ -14,6 +14,11 @@ use Illuminate\Http\Request;
 
 class TasksController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     protected $rules = [
             'name' => ['required', 'min:3'],
@@ -27,8 +32,8 @@ class TasksController extends Controller
      */
     public function index(Project $project)
     {
-        //
-        return view('tasks.index', compact('project'));
+        $tasks = Task::with('project')->paginate(10);
+        return view('tasks.index', ['tasks' => $tasks]);
     }
 
     /**
@@ -38,7 +43,7 @@ class TasksController extends Controller
      */
     public function create(Project $project)
     {
-        //
+        $project = Project::lists('name', 'id');
         return view('tasks.create', compact('project'));
     }
 
@@ -89,8 +94,8 @@ class TasksController extends Controller
      */
     public function edit(Project $project, Task $task)
     {
-        //
-        return view('tasks.show', compact('project', 'task'));
+        $project = Project::lists('name', 'id');
+        return view('tasks.edit', compact('project', 'task'));
     }
 
     /**
@@ -108,7 +113,7 @@ class TasksController extends Controller
         $input = array_except(Input::all(), '_method');
         $task->update($input);
 
-        return Redirect::route('projects.tasks.show', [$project->slug, $task->slug])->with('message',  'Tarefa atualizada!');
+        return Redirect::route('projects.tasks.show', [$project->id, $task->id])->with('message',  'Tarefa atualizada!');
     }
 
     /**
@@ -120,7 +125,7 @@ class TasksController extends Controller
     public function destroy(Project $project, Task $task)
     {
         $task->delete();
-
-        return Redirect::route('projects.show', $project->slug)->with('message', 'Tarefa deletada!');
+        return Redirect::route('projects.tasks.index',
+            array($project->id,$task->id))->with('message', 'Tarefa deletada!');
     }
 }

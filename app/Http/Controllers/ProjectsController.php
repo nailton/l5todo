@@ -14,6 +14,11 @@ use Illuminate\Http\Request;
 class ProjectsController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     protected $rules = [
             'name' => ['required', 'min:3'],
             'slug' => ['required']
@@ -67,7 +72,6 @@ class ProjectsController extends Controller
      */
     public function show(Project $project)
     {
-        //
         return view('projects.show', compact('project'));
     }
 
@@ -97,7 +101,7 @@ class ProjectsController extends Controller
         $input = array_except(Input::all(), '_method');
         $project->update($input);
 
-        return Redirect::route('projects.show', $project->slug)->with('message',  'Projeto atualizado!');
+        return Redirect::route('projects.edit', $project->id)->with('message',  'Projeto atualizado!');
     }
 
     /**

@@ -1,9 +1,10 @@
-@extends('layouts.app')
+{{-- /resources/views/tasks/show.blade.php --}}
+@extends('layouts.painel.master')
 
 @section('content')
 
 <h2>
-  {!! link_to_route('projects.show', $project->name, [$project->slug]) !!} -
+  {!! link_to_route('projects.show', $project->name, [$project->id]) !!} -
   {{ $task->name }}
 </h2>
 

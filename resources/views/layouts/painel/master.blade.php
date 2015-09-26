@@ -11,7 +11,11 @@
 <body>
     @include('layouts.painel.partials.top-navbar')
     <div class="container">
-        @include('layouts.painel.partials.breadcrumbs')
+
+        @if(Auth::check())
+            @include('layouts.painel.partials.breadcrumbs')
+        @endif
+
         @include('layouts.painel.partials.flash')
 
         <!-- conteudo interno -->

@@ -4,7 +4,7 @@
 @section('content')
 
 <div class="page-header">
-  <h3>Criar projeto</h3>
+  <h5>Criar projeto</h5>
 </div>
 
 <div class="col-md-10">
@@ -14,5 +14,5 @@
   {!! Form::close() !!}
 </div>
 
-@endsection
+@stop
 
