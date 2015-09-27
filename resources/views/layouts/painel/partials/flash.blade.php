@@ -14,3 +14,10 @@
     @endforeach
 </div>
 @endif
+
+@if (Session::has('ErrorMessage'))
+<div class="alert alert-dismissible alert-warning">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Atenção!</strong> {{ Session::get('ErrorMessage') }}
+</div>
+@endif

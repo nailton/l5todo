@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Hash;
 use Input;
+use Auth;
 use Redirect;
 use App\User;
 use App\Http\Requests;
@@ -102,18 +103,48 @@ class ProfileController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Atualizar senha
      *
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function getPassword()
     {
-        //
+        $user = Auth::user();
+        return view('profile.password', compact('user'));
     }
 
-    public function setPasswordAttribute($password)
+    /**
+     * Atualizar senha
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function postPassword(Request $request)
     {
-        $this->attributes['password'] = Hash::make($password);
+        $this->validate($request, [
+            'old_password'=>'required',
+            'password'=>'required|confirmed|different:old_password',
+            'password_confirmation'=>' required|different:old_password|same:password|min:6'
+            ]);
+
+        $input = $request->all();
+
+        $user = Auth::user();
+
+        // verificar no banco se senha antiga e igual a do banco
+        if(!Hash::check($input['old_password'], $user->getAuthPassword())){
+            return Redirect::back()->with('ErrorMessage',  'Senha atual não confere, tente novamente!');
+        }
+
+        // se passar então hash a senha nova e gravar no banco
+        $user->password = Hash::make($input['password']);
+        if(!$user->save()){
+            return Redirect::back()->with('ErrorMessage',  'Senha não pode ser alterar, tente novamente mais tarde.');
+        }
+
+        return Redirect::back()->with('message',  'Senha alterada com sucesso!');
+
+
     }
 }

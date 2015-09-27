@@ -28,6 +28,10 @@ Route::get('tasks', 'TasksController@index');
 
 Route::get('profile/edit/{id}', 'ProfileController@edit');
 
+// Rotas para alterar senha
+Route::get('profile/password', 'ProfileController@getPassword');
+Route::post('profile/password', 'ProfileController@postPassword');
+
 Route::model('tasks', 'Task');
 Route::model('projects', 'Project');
 

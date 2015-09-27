@@ -12,7 +12,6 @@
   {!! Form::model($user,
     ['method' => 'PATCH', 'route' => ['profile.update', $user->id]]) !!}
 
-    {{-- @include('auth/partials/_form', ['submit_text' => 'Salvar']) --}}
     <div class="form-group">
       {!! Form::label('name', 'Nome:', ['class' => 'control-label']); !!}
       {!! Form::text('name', null, ['class' => 'form-control', 'required']) !!}
