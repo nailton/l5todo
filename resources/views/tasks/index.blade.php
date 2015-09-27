@@ -2,7 +2,7 @@
 @extends('layouts.painel.master')
 @section('title', 'Lista de projetos')
 @section('content')
-<h5>Minhas tarefas <span class="label label-default l5-link-create">{!! link_to_route('projects.create', 'Nova tarefa') !!}</span></h5>
+<h5>Minhas tarefas <span class="label label-default l5-link-create">{!! link_to('/tasks/create', 'Nova tarefa') !!}</span></h5>
 <hr>
 @if (!$tasks->count())
 Você não tem projetos
