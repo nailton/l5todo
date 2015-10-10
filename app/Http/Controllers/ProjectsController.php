@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Auth;
+use App\User;
 use Input;
 use Redirect;
 use App\Project;
@@ -31,8 +33,10 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        //
-        $projects = DB::table('projects')->paginate(10);
+         // $projects = DB::table('project_user')->whereUserId(Auth::user()->id)->paginate(10);
+         // return $projects;
+        // dd(User::find(Auth::user()->id)->projects());
+        $projects = User::find(Auth::user()->id)->projects()->paginate(10);
         return view('projects.index', ['projects' => $projects]);
     }
 

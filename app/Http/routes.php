@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -10,7 +9,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::get('/', 'PainelController@index');
 
 // Authentication routes...
@@ -23,6 +21,7 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::get('painel', 'PainelController@index');
+
 Route::get('tasks/create', 'TasksController@create');
 Route::get('tasks', 'TasksController@index');
 
@@ -36,14 +35,10 @@ Route::model('tasks', 'Task');
 Route::model('projects', 'Project');
 
 Route::bind('tasks', function($value, $route){
-
   return App\Task::whereId($value)->first();
-
 });
 Route::bind('projects', function($value, $route){
-
   return App\Project::whereId($value)->first();
-
 });
 
 Route::resource('projects', 'ProjectsController');
