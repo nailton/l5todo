@@ -2,7 +2,7 @@
 @extends('layouts.painel.master')
 @section('title', 'Lista de projetos')
 @section('content')
-  <h5>Meus Projetos <span class="label label-default l5-link-create">{!! link_to_route('projects.create', 'Novo projeto') !!}</span></h5>
+<h5>Meus Projetos <span class="label label-default l5-link-create">{!! link_to_route('projects.create', 'Novo projeto') !!}</span></h5>
 <hr>
 @if (!$projects->count())
 Você não tem projetos
@@ -22,7 +22,7 @@ Você não tem projetos
 
     <tr>
 
-        <td>{!! Form::open(array('class' => 'form-inline',
+      <td>{!! Form::open(array('class' => 'form-inline',
         'method' => 'DELETE',
         'route' => array('projects.destroy',
         $project->id))) !!} {{ $project->id }}</td>
@@ -33,7 +33,7 @@ Você não tem projetos
 
         <td>{!! Form::submit('Delete', array('class' => 'btn btn-danger')) !!} {!! Form::close() !!}</td>
 
-        </tr>
+      </tr>
 
       @endforeach
 
@@ -41,8 +41,8 @@ Você não tem projetos
   </table>
 
   @endif
-<div class="col-md-12 l5-project-pag">
-  {!! $projects->render() !!}
-</div>
+  <div class="col-md-12 l5-project-pag">
+    {!! $projects->render() !!}
+  </div>
   @endsection
   @stop

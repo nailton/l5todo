@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use DB;
 use Input;
+use Auth;
+use App\User;
 use Redirect;
 use App\Project;
 use App\Task;
@@ -32,7 +34,10 @@ class TasksController extends Controller
      */
     public function index(Project $project)
     {
-        $tasks = Task::with('project')->paginate(10);
+        $tasks = User::find(Auth::user()->id)
+        ->projects()
+        ->with('tasks')
+        ->paginate(10);
         return view('tasks.index', ['tasks' => $tasks]);
     }
 

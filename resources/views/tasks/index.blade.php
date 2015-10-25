@@ -18,25 +18,32 @@ Você não tem projetos
     </tr>
   </thead>
   <tbody>
-
-    @foreach($tasks as $task)
+    @foreach($tasks as $project_task)
+    @foreach($project_task->tasks as $task)
     <tr>
 
+      {{-- FORMULÁRIO --}}
       <td>{!! Form::open(array('class' => 'form-inline',
         'method' => 'DELETE',
         'route' => array('projects.tasks.destroy',
-        $task->project->id, $task->id))) !!} {{ $task->id }}</td>
+        $project_task->id, $task->id))) !!} {{ $project_task->id }}</td>
 
-        <td><a href="{{ route('projects.show', $task->project->id) }}">
-          {{ $task->project->name }}</a></td>
-          <td><a href="{{ route('projects.tasks.show', [$task->project->id, $task->id]) }}">{{ $task->name }}</a></td>
+        {{-- DADOS LINK PROJETO --}}
+        <td><a href="{{ route('projects.show', $project_task->id) }}">
+          {{ $project_task->name }}</a></td>
 
-          <td>{!! link_to_route('projects.tasks.edit', 'Editar', [$task->project->id, $task->id], array('class' => 'btn btn-primary')) !!}</td>
+          {{--  DADOS LINK TAREFA --}}
+          <td><a href="{{ route('projects.tasks.show', [$task->project, $task->id]) }}">{{ $task->name }}</a></td>
 
+          {{-- LINK EDITAR TAREFA --}}
+          <td>{!! link_to_route('projects.tasks.edit', 'Editar', [$task->project, $task->id], array('class' => 'btn btn-primary')) !!}</td>
+
+          {{-- LINK APAGAR TAREFA --}}
           <td>{!! Form::submit('Apagar', array('class' => 'btn btn-danger')) !!} {!! Form::close() !!}</td>
 
         </tr>
 
+        @endforeach
         @endforeach
 
       </tbody>

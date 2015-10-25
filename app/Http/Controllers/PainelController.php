@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
+use App\User;
 use App\Project;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -22,8 +24,11 @@ class PainelController extends Controller
      */
     public function index()
     {
-        $project = Project::lists('name', 'id');
-        return view('layouts.painel.index', compact('project'));
+        // $project = Project::lists('name', 'id');
+        $project = User::find(Auth::user()->id)->projects();
+        $project = $project->lists('name', 'id');
+        // dd($project);
+        return view('layouts.painel.index', ['project' => $project]);
     }
 
     /**
